@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="css/simple.css">
+  <title>Chatアプリ</title>
+</head>
+
+<body>
+  <aside>
+		<a href="/home/" class="imghover1"><img class="img1" src="img/name1.jpg" alt=""></a>
+    	<nav>
+			  <ul class="ul1">
+  				<li class="li1"><a href="file:///Applications/MAMP/htdocs/dev20/index.html" class="imghover">HOME</a></li>
+	  			<li class="li1"><a href="file:///Applications/MAMP/htdocs/dev20/newlist.html" class="imghover">新規作成</a></li>
+		  		<li class="li1"><a href="file:///Applications/MAMP/htdocs/dev20/company.html" class="imghover">企業情報</a></li>
+			  	<li class="li1"><a href="/contact/" class="imghover">問い合わせ</a></li>
+		  	</ul>
+		  </nav>
+		</aside>
+  <main class="mainChat">
+    <h1>チャットcontact</h1>
+      <div class="chatlog"> 
+      <!-- 保存されたデータが表示される箇所 -->
+        <div id="output"></div>
+      </div>
+    <div class="sidefooter">
+      <div class="inputName2">　 名前 <input class="inputName" type="text" id="username">
+      <button class="button" id="send">送信</button>
+      </div><br>
+      <div class="textChtat">
+        <div><textarea class="textareaName"name="" id="text" cols="30" rows="10"></textarea>
+      </div>
+    <div>
+      <!-- 送信ボタン -->
+   
+    </div>
+  </main>
+
+
+  <!--/ コンテンツ表示画面 -->
+
+  <!-- JQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <!-- JQuery -->_
+
+  <!--** 以下Firebase **-->
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <!-- 6.6.1に該当する箇所はfirebaseのバージョンですので更新されるたびに随時変わります🤗 -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyBWnEzZnjNtcybLC0jVOU8UJj96QqxjF40",
+      authDomain: "dev20chat-b62d9.firebaseapp.com",
+      databaseURL: "https://dev20chat-b62d9-default-rtdb.firebaseio.com/",
+      projectId: "dev20chat-b62d9",
+      storageBucket: "dev20chat-b62d9.appspot.com",
+      messagingSenderId: "110302781008",
+      appId: "1:110302781008:web:30dd875c17bee578fafb55",
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    //firebaseのデーターベース（保存させる場所）を使いますよ
+    const newPostRef = firebase.database().ref();
+
+    // ここから下にjqueryの処理を書いて練習します
+
+    // 送信ボタンをクリックされたら次の処理をする
+    $("#send").on("click", function () {
+      // let usernameValue = $("#username").val();
+      // if(usernameValue == ""){
+      //   alert("入力されていません")
+      //   return
+      // }
+
+      newPostRef.push({
+        username:$("#username").val(),
+        text:$("#text").val(),
+      })
+      $("#username").val("");
+      $("#text").val("");
+    });
+    newPostRef.on("child_added",function (date){
+        let v = date.val();
+        let str = `<p>${v.username}<br>${v.text}</p>`
+
+        $("#output").prepend(str);
+      })
+
+
+    $("#text").on("keydown", function (e) {
+      console.log(e, 'eventデータの塊')
+      if(e.keyCode === 16){
+        // 送信処理を実行する
+        // シフト　16
+
+        newPostRef.push({
+        username:$("#username").val(),
+        text:$("#text").val(),
+      })
+      $("#username").val("");
+      $("#text").val("");
+      }
+    })
+  </script>
+
+</body>
+
+</html>

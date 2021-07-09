@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/newlist.css">
+    <title>新規作成</title>
+</head>
+<body>
+    <aside>
+		<a href="/home/" class="imghover1"><img class="img1" src="img/name1.jpg" alt=""></a>
+    	<nav>
+			<ul class="ul1">
+				
+				<li class="li1"><a href="file:///Applications/MAMP/htdocs/dev20/index.html" class="imghover">HOME</a></li>
+				<li class="li1"><a href="file:///Applications/MAMP/htdocs/dev20/newlist.html" class="imghover">新規作成</a></li>
+				<li class="li1"><a href="file:///Applications/MAMP/htdocs/dev20/company.html" class="imghover">企業情報</a></li>
+				<li class="li1"><a href="/contact/" class="imghover">問い合わせ</a></li>
+			</ul>
+		</nav>
+		<div class="sidefooter">
+			sidefooter
+		</div>
+		
+	</aside>
+    <main>
+        <div class="newMatter">
+        <h2 class="page-title3">新規案件作成</h2>
+        <dt class="dt2">エリア</dt>
+            <div class="input">
+                <input type="text" class="inputValue" placeholder="Enter a city">
+                <input type="submit1" value="送信" class="button">
+            </div>
+            <div class="display">
+                <h1 class="name"></h1>
+                <p class="name"></p>
+                <p class="desc">overcast clouds</p>
+                <p class="temp">14</p>
+            </div>
+            <script src="index.js"></script>
+        
+
+   <!-- 上記までがヘッダーと写真以上 -->
+   <div class="form_area">
+        <form method="POST" action="http://localhost:8888/dev20/dev_20_php_01.php/insert.php">
+       <dl>
+           <dl class="textform">
+               <dt class="dt">基本情報</dt>
+                   <dd>①平米　<input id="height-input" class="text" type="text" name="hebei">m2</dd>   
+                   <dd>②階数　<input id="weight-input" class="text" type="text" name="kaisuu">階</dd>
+                   <dd>③高さ　<input id="takasa-input" class="text" type="text" name="takasa">m</dd>
+           </dl>
+           <dd>
+               <label for="slc1">④構造分類</label>
+               <select id="Bunrui" name="slc1">
+                   <option option="" value="" selected="selected"></option>
+                   <option value="1">木造</option>
+                   <option value="2">鉄骨造</option>
+                   <option value="3">RC造</option>
+               </select>
+           </dd>
+       </dl>
+               <dd>
+   
+                   <span class="checkbox-field">
+                       <label for="ck1">⑤使用用途<br>
+                           <input id="check1" type="checkbox" name="ck1" value="" onsubmit="rsp(0);">
+                           <span class="checkbox-field-text">住宅 </span>
+                       </label>
+                   </span>
+                   <span class="checkbox-field">
+                       <label>
+                           <input id="check2" type="checkbox" name="ck1" value="" onsubmit="rsp(1);">
+                           <span class="checkbox-field-text">共同住宅</span>
+                       </label>
+                   </span>
+                   <span class="checkbox-field">
+                       <label>
+                           <input id="check3" type="checkbox" name="ck1" value="" onsubmit="rsp(2);">
+                           <span class="checkbox-field-text">店舗</span>
+                       </label>
+                   </span>
+              
+   
+               </dd>
+       
+       <div class="zyouhou">
+           <input type="button" value="住宅" onclick="rsp(0);">
+           <input type="button" value="共同住宅" onclick="rsp(1);">
+           <input type="button" value="店舗" onclick="rsp(2);">
+               <div class="player1" id="player"></div>
+               <div class="resultMsg" id="resultMsg"></div>
+               <div class="computer" id="computer"></div>
+               <div id="bmi-output" class="display-4"></div>
+           </div>
+            <div class="submit">
+               <input id="button-submit" type="submit" value="暫定見積もり">
+            </div>
+        </form>
+   </div>
+   <script src="newlist.js"></script>
+   </div>
+</main>
+    
+</body>
+</html>
